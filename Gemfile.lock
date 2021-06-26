@@ -81,6 +81,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
+    kind (5.7.0)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -165,6 +166,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    semantic_range (2.3.0)
     shoulda-matchers (4.3.0)
       activesupport (>= 4.2.0)
     spring (2.1.1)
@@ -187,15 +189,21 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
+    u-attributes (2.7.0)
+      kind (>= 4.0, < 6.0)
+    u-case (4.5.1)
+      kind (>= 5.6, < 6.0)
+      u-attributes (>= 2.7, < 3.0)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webpacker (4.3.0)
-      activesupport (>= 4.2)
+    webpacker (5.1.1)
+      activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -223,8 +231,9 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
+  u-case (~> 4.5.1)
   web-console (>= 3.3.0)
-  webpacker (~> 4.0)
+  webpacker (~> 5.0)
 
 RUBY VERSION
    ruby 2.6.0p0
