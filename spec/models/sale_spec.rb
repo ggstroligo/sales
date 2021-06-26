@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Sale, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'Relationships' do
+    it { is_expected.to have_many(:orders)}
+  end
 end

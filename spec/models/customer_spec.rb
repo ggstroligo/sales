@@ -9,6 +9,6 @@ RSpec.describe Customer, type: :model do
   end
 
   context 'Relationships' do
-    it { is_expected.to have_many(:purchases) }
+    it { is_expected.to have_many(:orders) }
   end
 end
