@@ -1,0 +1,11 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+      <%= form_with url: sales_path, method: :post do |form| %>
+        <%= form.label :sales, "Vendas consolidadas" %>
+        <div class="form-group">
+          <%= form.file_field :report_file, required: true, class: "form-control-file" %>
+          <%= form.submit "Enviar" %>
+        </div>
+      <% end %>
+  </div>
+</section>

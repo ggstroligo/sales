@@ -17,8 +17,11 @@
         <div class="col d-flex flex-column h-100">
           <main class="row">
             <% flash.each do |type, msg| %>
-              <div><%= msg %></div>
+              <div class="<%= flash_class[type] %>" role="alert">
+                <%= msg %>
+              </div>
             <% end %>
+
             <%= yield %>
           </main>
           <footer class="row bg-light py-4 mt-auto">
