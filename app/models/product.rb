@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
-  validates :description, presence: true, uniqueness: true
+  validates_uniqueness_of :description, scope: :merchant_id
+
+  validates :description, presence: true
   validates :merchant_id, presence: true
 
   belongs_to :merchant

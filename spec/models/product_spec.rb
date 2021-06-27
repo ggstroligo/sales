@@ -9,7 +9,7 @@ RSpec.describe Product, type: :model do
     end
 
     it '#description' do
-      is_expected.to validate_uniqueness_of(:description)
+      is_expected.to validate_uniqueness_of(:description).scoped_to(:merchant_id)
       is_expected.to validate_presence_of(:description)
     end
   end
