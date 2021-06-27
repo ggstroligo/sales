@@ -1,0 +1,50 @@
+<%# Gross income, top buyer, top seller)  %>
+<h2 class="display-3">Relatório Geral de Vendas</h2>
+<div class="card-group container-fluid content-row">
+  <div class="card text-white bg-primary mb-3 col" style="max-width: 20rem;">
+    <div class="card-header">Rendimentos Brutos Totais</div>
+    <div class="card-body">
+      <h2 class="card-title">R$100.214.312,32</h2>
+    </div>
+  </div>
+  <div class="card text-white bg-secondary mb-3 col" style="max-width: 20rem;">
+    <div class="card-header">Média por Venda</div>
+    <div class="card-body">
+      <h2 class="card-title">R$100.214.312,32</h2>
+    </div>
+  </div>
+    <div class="card text-white bg-primary mb-3 col" style="max-width: 20rem;">
+    <div class="card-header">Quem mais comprou</div>
+    <div class="card-body">
+      <h3 class="card-title"><%= Customer.last&.name %></h2>
+      <h4 class="card-text">R$5.214,32</h4>
+    </div>
+  </div>
+    <div class="card text-white bg-secondary mb-3 col" style="max-width: 20rem;">
+    <div class="card-header">Maior Vendedor</div>
+    <div class="card-body">
+      <h3 class="card-title"><%= Merchant.last&.name %></h2>
+      <h4 class="card-text">R$5.214,32</h4>
+    </div>
+  </div>
+</div>
+<h2>Lista de vendas</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Uploaded by</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @sales.each do |sale|%>
+    <tr onclick="window.location='<%= sale_url(sale.id) %>';">
+        <th scope="row"><%= sale.id %></th>
+        <td><%= sale.created_at.strftime("%c") %></td>
+        <td>@mdo</td>
+      </a>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
