@@ -34,10 +34,6 @@ describe ::SalesReport::Step::ParseEntry do
 
         it 'returns an failure :invalid_data with errors object'
       end
-
-      context 'cannot set payload' do
-        it 'returns an failure'
-      end
     end
   end
 end
