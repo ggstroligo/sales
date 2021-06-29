@@ -7,7 +7,11 @@ describe ::SalesReport::Step::ParseEntry do
     context 'successful use case when' do
       let(:raw) { file_fixture('valid_sales_report.tab').read }
 
-      it 'returns a success :parsed with payload object'
+      it 'returns a success :parsed with payload object' do
+        expect(subject.success?).to be true
+        expect(subject.type).to be :valid_entry
+        expect(subject.data).to include :payload
+      end
     end
 
     context 'fails use case when' do
@@ -32,7 +36,10 @@ describe ::SalesReport::Step::ParseEntry do
       context 'cannot validate data' do
         let(:raw) { file_fixture('invalid_data_sales_report.tab').read }
 
-        it 'returns an failure :invalid_data with errors object'
+        it 'returns an failure :invalid_data with errors object' do
+          expect(subject.success?).to be false
+          expect(subject.type).to be :invalid_data
+        end
       end
     end
   end

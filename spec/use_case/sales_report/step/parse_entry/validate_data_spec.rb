@@ -6,7 +6,10 @@ describe ::SalesReport::Step::ParseEntry::ValidateData do
   describe '#call!' do
     context 'successful use case when' do
       let(:data) { SALES_ENTRY_DATA_VALID }
-      it 'returns a success :valid_data'
+      it 'returns a success :valid_data' do
+        expect(subject.success?).to be true
+        expect(subject.type).to be :valid_data
+      end
     end
 
     context 'fails use case when' do
@@ -21,7 +24,10 @@ describe ::SalesReport::Step::ParseEntry::ValidateData do
       context ':data contains errors' do
         let(:data) { SALES_ENTRY_DATA_INVALID }
 
-        it 'returns an failure :invalid_data with errors object'
+        it 'returns an failure :invalid_data with errors object' do
+          expect(subject.success?).to be false
+          expect(subject.type).to be :invalid_data
+        end
       end
     end
   end
