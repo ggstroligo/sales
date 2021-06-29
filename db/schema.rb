@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_200617) do
+ActiveRecord::Schema.define(version: 2021_06_28_235256) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_200617) do
     t.integer "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
@@ -50,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_200617) do
     t.integer "merchant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["description"], name: "index_products_on_description", unique: true
+    t.index ["description", "price", "merchant_id"], name: "index_products_on_description_and_price_and_merchant_id", unique: true
     t.index ["merchant_id"], name: "index_products_on_merchant_id"
   end
 
