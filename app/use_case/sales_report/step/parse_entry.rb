@@ -6,7 +6,7 @@ module SalesReport
       flow self.call!,
            ValidateHeaders,
            ValidateData,
-           BuildPayload
+           NormalizeData
 
       def call!
         Success result: { headers: headers, data: data }
