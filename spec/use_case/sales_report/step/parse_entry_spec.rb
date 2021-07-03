@@ -10,7 +10,22 @@ describe ::SalesReport::Step::ParseEntry do
       it 'returns a success :parsed with payload object' do
         expect(subject.success?).to be true
         expect(subject.type).to be :valid_entry
-        expect(subject.data).to include :payload
+        expect(subject.data[:orders]).to match([
+                                                 {
+                                                   customer: 'João Silva',
+                                                   items: [
+                                                     {
+                                                       description: 'R$10 off R$20 of food',
+                                                       price: Float(10),
+                                                       amount: Integer(2),
+                                                       merchant: {
+                                                         address: '987 Fake St',
+                                                         name: "Bob's Pizza"
+                                                       }
+                                                     }
+                                                   ]
+                                                 }
+                                               ])
       end
     end
 
