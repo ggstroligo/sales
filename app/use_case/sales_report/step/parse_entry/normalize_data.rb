@@ -30,7 +30,7 @@ module SalesReport
         end
 
         def group_by_price_name_and_merchant_of(items)
-          items.group_by { |item| item[1] && item[2] && item[5] }.values
+          items.group_by { |item| [item[1], item[2], item[5]] }.values
         end
 
         def normalized_item(data)
