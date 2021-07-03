@@ -1,20 +1,30 @@
 module Presenters
   module Sales
-    class Index
+    class Show
       module Query
-        class TotalIncome < Micro::Case
+        class SaleIncome < Micro::Case
+          attribute :sale
+
           def call!
-            Success result: { total_income: total_income }
+            Success result: { sale_income: sale_income }
           end
 
           private
 
-          def total_income
-            Sale.joins(orders: { items: :product }).group(:id).sum(item_price)
+          def sale_income
+            @sale_income ||= Order
+              .joins(:customer, items: [:product])
+              .where(sale: sale)
+              .group(customer_table[:name])
+              .sum(item_price)
           end
 
           def item_price
             Arel::Nodes::Multiplication.new(item_table[:amount], product_table[:price])
+          end
+
+          def customer_table
+            Customer.arel_table
           end
 
           def product_table

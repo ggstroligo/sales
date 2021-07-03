@@ -17,6 +17,24 @@ RSpec.describe 'Sales', type: :request do
     end
   end
 
+  describe '#show' do
+
+    before do
+      sale = create :sale
+      customer = create :customer
+      order = create :order, sale: sale, customer: customer
+      merchant = create :merchant
+      product = create :product, merchant: merchant, price: 10.0
+      create :order_item, product: product, order: order, amount: 1
+
+      get sale_path(sale.id)
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe '#create' do
     before { post sales_path, params: { report_file: Rack::Test::UploadedFile.new(file) } }
 
