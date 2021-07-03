@@ -4,27 +4,15 @@ class SalesController < ApplicationController
   before_action :check_file, only: :create
 
   def index
-    merchant_table = Merchant.arel_table
-    product_table = Product.arel_table
-    item_table = Order::Item.arel_table
-    customer_table = Customer.arel_table
-    item_price = Arel::Nodes::Multiplication.new(item_table[:amount], product_table[:price])
-    sales_values = Sale.joins(orders: { items: :product }).group(:id).sum(item_price)
-
-    @total_gross_income = sales_values.values.sum
-    @mean_avg_per_sale = sales_values.values.sum / sales_values.size if sales_values.size.positive?
-
-    buyer_ranking = Order::Item.joins(product: :merchant, order: :customer).group(customer_table[:id]).sum(item_price)
-    top_buyer = buyer_ranking.max_by { |_, v| v }
-    @top_buyer = Customer.find(top_buyer.first).name
-    @top_buyer_value = top_buyer.last
-
-    ranking_sellers = Order::Item.joins(product: :merchant).group(merchant_table[:id]).order(item_price.desc).sum(item_price)
-    top_seller = ranking_sellers.max_by { |_, v| v }
-    @top_seller = Merchant.find(top_seller.first).name
-    @top_seller_value = top_seller.last
-
-    @sales = Sale.all
+    Presenters::Sales::Index
+      .call
+      .on_success do |result|
+        @sales = result.data[:sales]
+        @total_gross_income = result.data[:total_gross_income]
+        @mean_avg_per_sale = result.data[:mean_avg_per_sale]
+        @best_seller = result.data[:best_seller]
+        @top_buyer = result.data[:top_buyer]
+      end
   end
 
   def create

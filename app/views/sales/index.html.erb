@@ -1,4 +1,3 @@
-<%# Gross income, top buyer, top seller)  %>
 <h2 class="display-3">Relatório Geral de Vendas</h2>
 <div class="card-group container-fluid content-row">
   <div class="card text-white bg-primary mb-3 col" style="max-width: 20rem;">
@@ -16,15 +15,15 @@
     <div class="card text-white bg-primary mb-3 col" style="max-width: 20rem;">
     <div class="card-header">Top Comprador</div>
     <div class="card-body">
-      <h3 class="card-title"><%= @top_buyer %></h2>
-      <h4 class="card-text"><%= number_to_currency(@top_buyer_value, unit: "R$", separator: ",", delimiter: ".") %></h4>
+      <h3 class="card-title"><%= @top_buyer[:name] %></h2>
+      <h4 class="card-text"><%= number_to_currency(@top_buyer[:value], unit: "R$", separator: ",", delimiter: ".") %></h4>
     </div>
   </div>
     <div class="card text-white bg-secondary mb-3 col" style="max-width: 20rem;">
     <div class="card-header">Top Vendedor</div>
     <div class="card-body">
-      <h3 class="card-title"><%= @top_seller %></h2>
-      <h4 class="card-text"><%= number_to_currency(@top_seller_value, unit: "R$", separator: ",", delimiter: ".") %></h4>
+      <h3 class="card-title"><%= @best_seller[:name] %></h2>
+      <h4 class="card-text"><%= number_to_currency(@best_seller[:value], unit: "R$", separator: ",", delimiter: ".") %></h4>
 
     </div>
   </div>
