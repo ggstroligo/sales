@@ -2,6 +2,7 @@
   <% messages.each do |message|  %>
     <div class="<%= flash_class[type] %>" role="alert">
       <h5><%= message["title"] %> </h5>
+      <p><sub><%= message["info"] %><sub></p>
       <p><%= message["description"] %></p>
     </div>
   <% end %>

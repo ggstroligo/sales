@@ -4,27 +4,28 @@
   <div class="card text-white bg-primary mb-3 col" style="max-width: 20rem;">
     <div class="card-header">Rendimentos Brutos Totais</div>
     <div class="card-body">
-      <h2 class="card-title">R$100.214.312,32</h2>
+      <h2 class="card-title"><%= number_to_currency(@total_gross_income, unit: "R$", separator: ",", delimiter: ".") %></h2>
     </div>
   </div>
   <div class="card text-white bg-secondary mb-3 col" style="max-width: 20rem;">
     <div class="card-header">Média por Venda</div>
     <div class="card-body">
-      <h2 class="card-title">R$100.214.312,32</h2>
+      <h2 class="card-title"><%= number_to_currency(@mean_avg_per_sale, unit: "R$", separator: ",", delimiter: ".") %></h2>
     </div>
   </div>
     <div class="card text-white bg-primary mb-3 col" style="max-width: 20rem;">
-    <div class="card-header">Quem mais comprou</div>
+    <div class="card-header">Top Comprador</div>
     <div class="card-body">
-      <h3 class="card-title"><%= Customer.last&.name %></h2>
-      <h4 class="card-text">R$5.214,32</h4>
+      <h3 class="card-title"><%= @top_buyer %></h2>
+      <h4 class="card-text"><%= number_to_currency(@top_buyer_value, unit: "R$", separator: ",", delimiter: ".") %></h4>
     </div>
   </div>
     <div class="card text-white bg-secondary mb-3 col" style="max-width: 20rem;">
-    <div class="card-header">Maior Vendedor</div>
+    <div class="card-header">Top Vendedor</div>
     <div class="card-body">
-      <h3 class="card-title"><%= Merchant.last&.name %></h2>
-      <h4 class="card-text">R$5.214,32</h4>
+      <h3 class="card-title"><%= @top_seller %></h2>
+      <h4 class="card-text"><%= number_to_currency(@top_seller_value, unit: "R$", separator: ",", delimiter: ".") %></h4>
+
     </div>
   </div>
 </div>
