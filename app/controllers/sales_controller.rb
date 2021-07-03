@@ -15,6 +15,19 @@ class SalesController < ApplicationController
       end
   end
 
+  def show
+    Presenters::Sales::Show
+      .call(sale_id: params[:id])
+      .on_success do |result|
+        @sale = result.data[:sale]
+        @orders = result.data[:orders]
+        @sale_income = result.data[:sale_income]
+        @average_ticket = result.data[:average_ticket]
+        @featured_product = result.data[:featured_product]
+        @top_buyer = result.data[:top_buyer]
+      end
+  end
+
   def create
     SalesReport::Collect
       .call(raw: extracted_data)

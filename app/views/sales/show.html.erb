@@ -1,0 +1,49 @@
+<h2 class="display-3">Relatório Geral de Vendas</h2>
+<div class="card-group container-fluid content-row">
+  <div class="card text-white bg-primary mb-3 col" style="max-width: 20rem;">
+    <div class="card-header">Valor Total</div>
+    <div class="card-body">
+      <h2 class="card-title"><%= number_to_currency(@sale_income, unit: "R$", separator: ",", delimiter: ".") %></h2>
+    </div>
+  </div>
+  <div class="card text-white bg-secondary mb-3 col" style="max-width: 20rem;">
+    <div class="card-header">Ticket médio</div>
+    <div class="card-body">
+      <h2 class="card-title"><%= number_to_currency(@average_ticket, unit: "R$", separator: ",", delimiter: ".") %></h2>
+    </div>
+  </div>
+    <div class="card text-white bg-primary mb-3 col" style="max-width: 20rem;">
+    <div class="card-header">Top Produto</div>
+    <div class="card-body">
+      <h3 class="card-title"><%= @featured_product[:name] %></h2>
+      <h4 class="card-text"><%= number_to_currency(@featured_product[:value], unit: "R$", separator: ",", delimiter: ".") %></h4>
+    </div>
+  </div>
+    <div class="card text-white bg-secondary mb-3 col" style="max-width: 20rem;">
+    <div class="card-header">Top Comprador</div>
+    <div class="card-body">
+      <h3 class="card-title"><%= @top_buyer[:name] %></h2>
+      <h4 class="card-text"><%= number_to_currency(@top_buyer[:value], unit: "R$", separator: ",", delimiter: ".") %></h4>
+
+    </div>
+  </div>
+</div>
+<h2>Lista de Pedidos</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ordenante</th>
+      <th scope="col">Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @orders.each do |order|%>
+    <tr>
+      <th scope="row"><%= order[:id] %></th>
+      <td><%= order[:customer] %></td>
+      <td><%= number_to_currency(order[:final_value],  unit: "R$", separator: ",", delimiter: ".") %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
