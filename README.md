@@ -72,3 +72,4 @@ services/
 - [ ] Add helper/delegator methods to models
 - [ ] Improve serialization base
 - [ ] Improve front-end with any modern reactive framework (hotwire, react)
+- [ ] Improve error handler
