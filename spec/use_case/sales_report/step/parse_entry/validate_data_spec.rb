@@ -28,6 +28,41 @@ describe ::SalesReport::Step::ParseEntry::ValidateData do
           expect(subject.success?).to be false
           expect(subject.type).to be :invalid_data
         end
+
+        context 'exceeded columns' do
+          let(:data) { SALES_ENTRY_DATA_INVALID_EXCEEDED_COLUMNS }
+
+          it 'error exceeded columns' do
+            expect(subject.data[:errors].first).to match({
+                                                           type: 'Exceeded Columns',
+                                                           expected: nil,
+                                                           value: nil,
+                                                           line: 0,
+                                                           column: 7
+                                                         })
+          end
+        end
+
+        context 'invalid value type' do
+          it 'error invalid type' do
+            expect(subject.data[:errors]).to match [
+              {
+                type: 'Invalid Type',
+                expected: 'Float',
+                value: 'String',
+                line: 0,
+                column: 2
+              },
+              {
+                type: 'Invalid Type',
+                expected: 'Integer',
+                value: 'String',
+                line: 0,
+                column: 3
+              }
+            ]
+          end
+        end
       end
     end
   end
